@@ -1,0 +1,42 @@
+{
+  "name": "macaca-ai-engine",
+  "version": "0.1.0",
+  "description": "macaca ai engine",
+  "keywords": [
+    "macaca",
+    "ai"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xudafeng/macaca-ai.git"
+  },
+  "dependencies": {
+    "aliyun-sdk": "^1.12.3",
+    "baidu-aip-sdk": "^2.4.4",
+    "bluebird": "^3.7.0",
+    "dingtalk-robot-sender": "^1.1.1",
+    "macaca-utils": "^1.0.1",
+    "microtemplate": "^1.0.2",
+    "urllib": "^2.34.1"
+  },
+  "devDependencies": {
+    "eslint": "*",
+    "eslint-plugin-mocha": "^4.11.0",
+    "git-contributor": "*",
+    "husky": "*",
+    "mocha": "*",
+    "nyc": "*"
+  },
+  "scripts": {
+    "test": "nyc --reporter=lcov --reporter=text mocha --recursive",
+    "lint": "eslint . --fix",
+    "contributor": "git-contributor"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "license": "MIT"
+}
