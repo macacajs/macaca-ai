@@ -21,6 +21,7 @@
     "urllib": "^2.34.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "eslint": "*",
     "eslint-plugin-mocha": "^4.11.0",
     "git-contributor": "*",
