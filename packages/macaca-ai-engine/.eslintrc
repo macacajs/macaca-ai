@@ -8,6 +8,7 @@
   "plugins": [
     "mocha"
   ],
+  "parser": "babel-eslint",
   // https://github.com/feross/eslint-config-standard
   "rules": {
     "accessor-pairs": 2,
@@ -39,7 +40,7 @@
     "max-nested-callbacks": 0,
     "max-params": 0,
     "max-statements": 0,
-    "new-cap": [2, { "newIsCap": true, "capIsNew": false }],
+    "new-cap": [0, { "capIsNew": false }],
     "new-parens": 2,
     "no-alert": 0,
     "no-array-constructor": 2,

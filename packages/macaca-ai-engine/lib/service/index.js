@@ -4,6 +4,10 @@ const Storage = require('./storage');
 const NLP = require('./nlp');
 const CV = require('./cv');
 
-exports.storage = new Storage();
-exports.nlp = new NLP();
-exports.cv = new CV();
+module.exports = config => {
+  return {
+    storage: new Storage(config),
+    nlp: new NLP(config),
+    cv: new CV(config)
+  };
+};
