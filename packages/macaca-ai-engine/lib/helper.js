@@ -4,7 +4,7 @@ const utils = require('macaca-utils');
 
 const _ = utils.merge({}, utils);
 
-_.getConfigFromEnv = (config, key, list) => {
+_.getConfigFromEnv = (config = {}, key, list) => {
   const _config = config[key] || {};
   const prefix = `MACACA_AI_ENGINE_${key.toUpperCase()}`;
 
