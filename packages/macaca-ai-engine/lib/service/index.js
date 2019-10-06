@@ -8,6 +8,6 @@ module.exports = config => {
   return {
     storage: new Storage(config),
     nlp: new NLP(config),
-    cv: new CV(config)
+    cv: new CV(config),
   };
 };

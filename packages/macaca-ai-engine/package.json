@@ -16,9 +16,11 @@
     "baidu-aip-sdk": "^2.4.4",
     "bluebird": "^3.7.0",
     "dingtalk-robot-sender": "^1.1.1",
+    "dotenv": "^8.1.0",
     "macaca-utils": "^1.0.1",
     "microtemplate": "^1.0.2",
-    "urllib": "^2.34.1"
+    "urllib": "^2.34.1",
+    "utility": "^1.16.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",

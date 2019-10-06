@@ -7,7 +7,7 @@ class CV {
   constructor(config) {
     config = _.getConfigFromEnv(config, 'aliocr', [
       'accessKeyId',
-      'secretAccessKey'
+      'secretAccessKey',
     ]);
     this.client = new OCR(config);
   }

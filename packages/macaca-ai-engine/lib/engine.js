@@ -4,17 +4,17 @@ const Service = require('./service');
 
 const handleMap = {
   get(obj) {
-    const { items: data } = obj;
+    const { items: data, } = obj;
     const VOB = data.find(item => item.deprel === 'VOB');
     return {
       api: 'get',
       params: [
-        VOB.word
-      ]
+        VOB.word,
+      ],
     };
   },
   clickElement(obj) {
-    const { items: data } = obj;
+    const { items: data, } = obj;
     const VOB = data.find(item => item.deprel === 'VOB');
     const attWord = data
       .filter(item => item.deprel === 'ATT')
@@ -24,12 +24,12 @@ const handleMap = {
       api: 'clickElement',
       params: [
         VOB.word,
-        attWord
-      ]
+        attWord,
+      ],
     };
   },
   input(obj) {
-    const { items: data, text } = obj;
+    const { items: data, text, } = obj;
     const VOB = data.find(item => item.deprel === 'VOB');
     const POB = data.find(item => item.deprel === 'POB');
     const ATT = data.find(item => item.deprel === 'ATT');
@@ -43,8 +43,8 @@ const handleMap = {
         api: 'input',
         params: [
           match1[1],
-          match1[2]
-        ]
+          match1[2],
+        ],
       };
     }
     const matchIdex = ATT.word.match(/第(\S)个/);
@@ -55,7 +55,7 @@ const handleMap = {
         '一',
         '二',
         '三',
-        '四'
+        '四',
       ].indexOf(indexWord);
     }
     // 在第x个输入框输入xx
@@ -67,36 +67,36 @@ const handleMap = {
         cooWords,
         {
           index,
-          isInput: [ '输入框' ].includes(POB && POB.word)
-        }
-      ]
+          isInput: [ '输入框', ].includes(POB && POB.word),
+        },
+      ],
     };
   },
   sleep(obj) {
-    const { items: data } = obj;
+    const { items: data, } = obj;
     const VOB = data.find(item => item.deprel === 'VOB');
     const QUN = data.find(item => item.deprel === 'QUN');
     return {
       api: 'sleep',
       params: [
         VOB.word,
-        QUN.word
-      ]
+        QUN.word,
+      ],
     };
-  }
+  },
 };
 
 const caseFactory = obj => {
-  const { items: data } = obj;
+  const { items: data, } = obj;
   const HED = data.find(item => item.deprel === 'HED');
   let target;
-  if ([ '访问', '打开' ].includes(HED.word)) {
+  if ([ '访问', '打开', ].includes(HED.word)) {
     target = 'get';
-  } else if ([ '单击', '点击' ].includes(HED.word)) {
+  } else if ([ '单击', '点击', ].includes(HED.word)) {
     target = 'clickElement';
-  } else if ([ '输入', '键入' ].includes(HED.word)) {
+  } else if ([ '输入', '键入', ].includes(HED.word)) {
     target = 'input';
-  } else if ([ '等待', '等' ].includes(HED.word)) {
+  } else if ([ '等待', '等', ].includes(HED.word)) {
     target = 'sleep';
   }
 

@@ -5,6 +5,8 @@ const Promise = require('bluebird');
 const _ = require('./helper');
 const MacacaAIEngine = require('./engine');
 
+require('dotenv').config();
+
 module.exports = (wd, config = {}) => {
   const engine = new MacacaAIEngine(config);
 
@@ -18,7 +20,7 @@ module.exports = (wd, config = {}) => {
 
   wd.addPromiseChainMethod('nlpLine', function(text) {
     console.log(text);
-    if (['拖动滑块验证'].includes(text)) {
+    if (['拖动滑块验证', ].includes(text)) {
       return this
         .validateSlide();
     }
@@ -38,7 +40,7 @@ module.exports = (wd, config = {}) => {
   });
 
   wd.addPromiseChainMethod('nlpInput', function(target, content, extraTarget = '', extra = {}) {
-    const { index, isInput } = extra;
+    const { index, isInput, } = extra;
     if (isInput && !isNaN(index)) {
       return this
         .execute(`
@@ -66,7 +68,7 @@ module.exports = (wd, config = {}) => {
           const element = JSON.parse(res);
           console.log(element);
           const ratio = 1;
-          const { x, y, width, height } = element;
+          const { x, y, width, height, } = element;
           const xx = (x + width / 2) / ratio;
           const yy = (y + height / 2) / ratio;
           const scripts = `window.__macaca_current_element = document.elementFromPoint(${xx}, ${yy})`;
@@ -88,12 +90,12 @@ module.exports = (wd, config = {}) => {
   });
 
   wd.addPromiseChainMethod('elementByText', function(text, options = {}) {
-    const { index = 0 } = options;
+    const { index = 0, } = options;
     const elemList = [
       'a',
       'button',
       'input',
-      'textarea'
+      'textarea',
     ];
     return new Promise(resolve => {
       this
@@ -117,11 +119,11 @@ module.exports = (wd, config = {}) => {
         .then(res => {
           const data = JSON.parse(res);
           const elements = data
-            .filter(item => item.text.includes(text));
+            .filter(item => item.text.replace(/\s/g, '').includes(text));
           const element = elements[index];
           if (element) {
             const ratio = 1;
-            const { x, y, width, height } = element;
+            const { x, y, width, height, } = element;
             const xx = (x + width / 2) / ratio;
             const yy = (y + height / 2) / ratio;
             const scripts = `window.__macaca_current_element = document.elementFromPoint(${xx}, ${yy})`;
@@ -140,11 +142,11 @@ module.exports = (wd, config = {}) => {
                 .then(data => {
                   console.log(data);
                   const items = data
-                    .filter(item => item.text.includes(text));
+                    .filter(item => item.text.replace(/\s/g, '').includes(text));
                   const item = items[index];
                   if (item) {
                     const ratio = 2;
-                    const { x, y, w, h } = item;
+                    const { x, y, w, h, } = item;
                     const xx = (x + w / 2) / ratio;
                     const yy = (y + h / 2) / ratio;
                     const scripts = `window.__macaca_current_element = document.elementFromPoint(${xx}, ${yy})`;

@@ -2,6 +2,7 @@
 
 // const MacacaNLP = require('./macaca');
 const BaiduNLP = require('./baidu');
+// const XFYunNLP = require('./xfyun');
 const _ = require('../../helper');
 
 class NLP {
@@ -9,8 +10,9 @@ class NLP {
     config = _.getConfigFromEnv(config, 'baidunlp', [
       'appId',
       'accessKeyId',
-      'secretAccessKey'
+      'secretAccessKey',
     ]);
+    // this.client = new XFYunNLP(config);
     this.client = new BaiduNLP(config);
   }
 

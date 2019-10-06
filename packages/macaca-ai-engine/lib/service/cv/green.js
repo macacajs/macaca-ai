@@ -12,21 +12,21 @@ class Green {
   constructor(config) {
     const {
       accessKeyId,
-      secretAccessKey
+      secretAccessKey,
     } = config;
     this.config = {
       gateway: 'https://green.cn-shanghai.aliyuncs.com',
       accessKeyId,
-      secretAccessKey
+      secretAccessKey,
     };
   }
 
   async scan(url) {
     const res = await this.request('/green/image/scan', {
-      scenes: [ 'ocr' ],
+      scenes: [ 'ocr', ],
       tasks: [{
-        url
-      }]
+        url,
+      }, ],
     });
     return _.get(res, '[0].results[0]');
   }
@@ -42,7 +42,7 @@ class Green {
       'x-acs-version': '2017-01-12',
       'x-acs-signature-nonce': _.uuid(),
       'x-acs-signature-version': '1.0',
-      'x-acs-signature-method': 'HMAC-SHA1'
+      'x-acs-signature-method': 'HMAC-SHA1',
     };
 
     headers.authorization = this._genAuth(path, headers);
@@ -53,7 +53,7 @@ class Green {
       method: 'POST',
       timeout: 3000,
       headers,
-      data
+      data,
     };
 
     const url = `${this.config.gateway}${path}`;
@@ -76,7 +76,7 @@ class Green {
   }
 
   _genAuth(path, headers) {
-    const { accessKeyId, secretAccessKey } = this.config;
+    const { accessKeyId, secretAccessKey, } = this.config;
     const signstr = [
       'POST',
       'application/json',
@@ -87,7 +87,7 @@ class Green {
       `x-acs-signature-nonce:${headers['x-acs-signature-nonce']}`,
       `x-acs-signature-version:${headers['x-acs-signature-version']}`,
       `x-acs-version:${headers['x-acs-version']}`,
-      path
+      path,
     ].join('\n');
     const authorization = crypto
       .createHmac('sha1', secretAccessKey)
