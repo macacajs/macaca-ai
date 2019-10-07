@@ -1,5 +1,9 @@
 'use strict';
 
+const fs = require('fs');
+const path = require('path');
+
+const _ = require('./helper');
 const Service = require('./service');
 
 const handleMap = {
@@ -116,6 +120,16 @@ class MacacaAIEngine {
     const url = await this.service.storage.putObject(data);
     const ocrRes = await this.service.cv.ocr(url);
     return ocrRes.ocrLocations;
+  }
+
+  async imageRecognizeFromPath(filePath) {
+    const relativePath = path.resolve(filePath);
+    if (!_.isExistedFile(relativePath)) {
+      console.log(relativePath);
+      return;
+    }
+    const bitmap = fs.readFileSync(filePath);
+    return await this.imageRecognize(new Buffer(bitmap).toString('base64'));
   }
 
   async nlpConvert(text) {
