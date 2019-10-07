@@ -33,6 +33,11 @@ module.exports = (wd, config = {}) => {
       });
   });
 
+  wd.addPromiseChainMethod('nlpScroll', function() {
+    return this
+      .execute('window.scrollTo(0, document.body.clientHeight)');
+  });
+
   wd.addPromiseChainMethod('nlpClickElement', function(text, att) {
     return this
       .elementByText(att || text)
@@ -96,26 +101,29 @@ module.exports = (wd, config = {}) => {
       'button',
       'input',
       'textarea',
+      'label',
     ];
     return new Promise(resolve => {
-      this
-        .execute(`
-          var __result = [];
-          document.querySelectorAll('${elemList.join(',')}').forEach(elem => {
-            var rect = elem.getBoundingClientRect();
-            var text = elem.placeholder || elem.innerText;
-            if (!text) return;
-            __result.push({
-              x: rect.left,
-              y: rect.top,
-              width: rect.width,
-              height: rect.height,
-              text: text.trim(),
-              type: elem.nodeName.toLowerCase(),
-            });
+      const s = `
+        var __result = [];
+        document.querySelectorAll('${elemList.join(',')}').forEach(elem => {
+          var rect = elem.getBoundingClientRect();
+          var text = elem.placeholder || elem.innerText;
+          if (!text) return;
+          __result.push({
+            x: rect.left,
+            y: rect.top,
+            width: rect.width,
+            height: rect.height,
+            text: text.trim(),
+            type: elem.nodeName.toLowerCase(),
           });
-          return JSON.stringify(__result);
-        `)
+        });
+        return JSON.stringify(__result);
+      `;
+      console.log(s);
+      this
+        .execute(s)
         .then(res => {
           const data = JSON.parse(res);
           const elements = data

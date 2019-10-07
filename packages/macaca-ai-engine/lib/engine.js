@@ -19,11 +19,11 @@ const handleMap = {
   },
   clickElement(obj) {
     const { items: data, } = obj;
-    const VOB = data.find(item => item.deprel === 'VOB');
     const attWord = data
-      .filter(item => item.deprel === 'ATT')
+      .filter(item => item.deprel === 'COO' || item.deprel === 'ATT')
       .map(item => item.word)
       .join('');
+    const VOB = data.find(item => item.deprel === 'VOB');
     return {
       api: 'clickElement',
       params: [
@@ -88,6 +88,14 @@ const handleMap = {
       ],
     };
   },
+  scroll(obj) {
+    const { items: data, } = obj;
+    return {
+      api: 'scroll',
+      params: [
+      ],
+    };
+  },
 };
 
 const caseFactory = obj => {
@@ -102,6 +110,8 @@ const caseFactory = obj => {
     target = 'input';
   } else if ([ '等待', '等', ].includes(HED.word)) {
     target = 'sleep';
+  } else if ([ '滚', '滚动', ].includes(HED.word)) {
+    target = 'scroll';
   }
 
   if (target) {
