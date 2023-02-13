@@ -1,20 +1,21 @@
 # macaca-ai-engine
 
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
+[![Package quality][quality-image]][quality-url]
+[![CI][ci-image]][ci-url]
 [![node version][node-image]][node-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/macaca-ai-engine.svg?style=flat-square
+
+[npm-image]: https://img.shields.io/npm/v/macaca-ai-engine.svg?logo=npm
 [npm-url]: https://npmjs.org/package/macaca-ai-engine
-[travis-image]: https://img.shields.io/travis/xudafeng/macaca-ai-engine.svg?style=flat-square
-[travis-url]: https://travis-ci.org/xudafeng/macaca-ai-engine
-[coveralls-image]: https://img.shields.io/coveralls/xudafeng/macaca-ai-engine.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/xudafeng/macaca-ai-engine?branch=master
-[node-image]: https://img.shields.io/badge/node.js-%3E=_8-green.svg?style=flat-square
+[quality-image]: https://packagequality.com/shield/macaca-ai-engine.svg
+[quality-url]: https://packagequality.com/#?package=macaca-ai-engine
+[ci-image]: https://github.com/macacajs/macaca-ai/actions/workflows/ci.yml/badge.svg
+[ci-url]: https://github.com/macacajs/macaca-ai/actions/workflows/ci.yml
+[node-image]: https://img.shields.io/badge/node.js-%3E=_12-green.svg?logo=node.js
 [node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/macaca-ai-engine.svg?style=flat-square
+[download-image]: https://img.shields.io/npm/dm/macaca-ai-engine.svg?logo=npm
 [download-url]: https://npmjs.org/package/macaca-ai-engine
 
 > macaca-ai-engine

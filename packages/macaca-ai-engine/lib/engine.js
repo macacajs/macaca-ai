@@ -89,7 +89,7 @@ const handleMap = {
     };
   },
   scroll(obj) {
-    const { items: data, } = obj;
+    // const { items: data, } = obj;
     return {
       api: 'scroll',
       params: [
